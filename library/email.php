@@ -15,9 +15,12 @@ function sendMail(string $body, $files = null): void
 
   /**
    * Mail 受け取り先
+   *  [
+   *    'email@example.com' => 'name',
+   *  ]
    */
   $recipients = [
-
+    // 'zpunsss@gmail.com' => 'chamoosong',
   ];
 
   try {
