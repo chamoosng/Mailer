@@ -88,7 +88,7 @@ foreach ($_POST as $key => $value) {
     $value = nl2br($value);
 
     $body .= $value;
-    echo $value;
+    
   }
   $body .= "</td> </tr>";
 }
