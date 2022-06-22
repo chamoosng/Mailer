@@ -20,7 +20,7 @@ function sendMail(string $body, $files = null): void
    *  ]
    */
   $recipients = [
-    // 'zpunsss@gmail.com' => 'chamoosong',
+    'zpunsss@gmail.com' => 'chamoosong',
   ];
 
   try {
@@ -38,6 +38,12 @@ function sendMail(string $body, $files = null): void
     $mail->isSMTP();
     $mail->SMTPAuth = true;
 
+    /**
+     *  メールを送信した後、後ろのページへ移動するために
+     *  Debug設定を消す
+     * */ 
+    $mail->SMTPDebug = 0;
+    
     $mail->Host = $host;
     $mail->Username = $username;
     $mail->Password = $password;
@@ -70,9 +76,10 @@ function sendMail(string $body, $files = null): void
       }
 
     }
-
     //メール送信
     $mail->send();
+
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
   
   } catch (Exception $e) {
 
@@ -91,7 +98,7 @@ function attach_file(PHPMailer $mail, $files): void
 {
   foreach ($files as $file) {
     
-    $mail->AddAttachment($file["tmp_name"],$file["name"], 'base64', $file['type']);
+    $mail->AddAttachment($file["tmp_name"], $file["name"], 'base64', $file['type']);
   
   }
 }
